@@ -1,22 +1,13 @@
 import React from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Main from '../components/Main';
+import Home from '../components/Home';
+import Layout from '../components/Layout';
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="min-h-fit bg-white">
-        <Header />
-      </header>
-      <main className="flex-1 bg-gray-100">
-        <Main />
-      </main>
-      <footer className="min-h-fit bg-gray-300">
-        <Footer />
-      </footer>
-    </div>
+    <Layout>
+      <Home />
+    </Layout>
   );
 };
 
-export default Home;
+export default HomePage;
