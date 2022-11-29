@@ -43,7 +43,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <article className="px-12 py-8">
+    <article className="px-12 py-8 xl:px-64">
       <section className="relative h-48">
         <Image src={'/img/hiking.svg'} alt={'banner'} fill />
       </section>

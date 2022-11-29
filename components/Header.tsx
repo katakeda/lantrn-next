@@ -4,7 +4,7 @@ import React from 'react';
 
 const Header: React.FC = () => {
   return (
-    <div className="flex justify-between py-8 px-12">
+    <div className="flex justify-between py-8 px-12 xl:px-64">
       <Link href={'/'}>
         <div className="flex cursor-pointer">
           <span className="mr-2">

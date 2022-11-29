@@ -2,7 +2,7 @@ import React from 'react';
 
 const Error: React.FC = () => {
   return (
-    <article className="px-12 py-8">
+    <article className="px-12 py-8 xl:px-64">
       <section className="flex items-center justify-center">
         <div className="text-center">
           <div className="mb-4 text-5xl text-gray-900">Sorry...</div>

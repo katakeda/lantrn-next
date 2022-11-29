@@ -11,7 +11,7 @@ const Facilities: React.FC<FacilitiesProps> = ({ facilities }) => {
   const router = useRouter();
 
   return (
-    <article className="px-12 py-8">
+    <article className="px-12 py-8 xl:px-64">
       <section></section>
       <section>
         <div className="space-y-6 md:grid md:grid-cols-3 md:gap-4 md:space-y-0">
