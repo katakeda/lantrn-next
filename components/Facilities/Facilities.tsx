@@ -18,18 +18,14 @@ const Facilities: React.FC<FacilitiesProps> = ({ facilities }) => {
           {facilities.map((facility) => {
             return (
               <div
-                key={facility.FacilityID}
+                key={facility.id}
                 className="cursor-pointer rounded-md bg-white p-4 shadow-lg"
-                onClick={() =>
-                  router.push(`/facilities/${facility.FacilityID}`)
-                }
+                onClick={() => router.push(`/facilities/${facility.id}`)}
               >
                 <figure>
                   <PhotoIcon className="h-32 w-full" />
                 </figure>
-                <div className="text-lg text-gray-500">
-                  {facility.FacilityName}
-                </div>
+                <div className="text-lg text-gray-500">{facility.name}</div>
               </div>
             );
           })}

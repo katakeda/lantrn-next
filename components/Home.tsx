@@ -1,18 +1,45 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { Autocomplete, useJsApiLoader } from '@react-google-maps/api';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
+
+const apiLibraries: (
+  | 'places'
+  | 'drawing'
+  | 'geometry'
+  | 'localContext'
+  | 'visualization'
+)[] = ['places'];
 
 const Home: React.FC = () => {
   const router = useRouter();
-  const [zipcode, setZipcode] = useState<string>('');
+  const [autoComplete, setAutoComplete] =
+    useState<google.maps.places.Autocomplete>();
+  const [latLng, setLatLng] = useState<[number, number]>();
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_PLACES_API_KEY!,
+    libraries: apiLibraries,
+  });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setZipcode(e.currentTarget.value);
+  const handleOnLoad = (a: google.maps.places.Autocomplete) => {
+    setAutoComplete(a);
+  };
+
+  const handlePlaceChange = () => {
+    if (autoComplete) {
+      const location = autoComplete.getPlace().geometry?.location;
+      if (location) {
+        setLatLng([location.lat(), location.lng()]);
+      }
+    }
   };
 
   const handleSearch = () => {
-    router.push(`/facilities?zipcode=${zipcode}`);
+    if (latLng) {
+      const [lat, lng] = latLng;
+      router.push(`/facilities?lat=${lat}&lng=${lng}`);
+    }
   };
 
   return (
@@ -31,12 +58,22 @@ const Home: React.FC = () => {
       </section>
       <section className="mt-8">
         <div className="flex flex-col space-y-1 rounded-md bg-white p-4 shadow-lg md:flex-row md:space-x-1 md:space-y-0">
-          <input
-            type="text"
-            placeholder="Enter zipcode"
-            className="flex-1 rounded-sm p-2 text-center ring-1 ring-gray-300 focus:outline-none"
-            onChange={handleInputChange}
-          />
+          {isLoaded && (
+            <Autocomplete
+              className="flex-1"
+              restrictions={{ country: 'us' }}
+              fields={['geometry']}
+              types={['(regions)']}
+              onLoad={handleOnLoad}
+              onPlaceChanged={handlePlaceChange}
+            >
+              <input
+                type="text"
+                placeholder="Enter City or Zipcode"
+                className="w-full rounded-sm p-2 text-center ring-1 ring-gray-300 focus:outline-none"
+              />
+            </Autocomplete>
+          )}
           <button
             className="flex items-center justify-center space-x-2 rounded-md bg-green-500 p-2 text-white"
             onClick={handleSearch}

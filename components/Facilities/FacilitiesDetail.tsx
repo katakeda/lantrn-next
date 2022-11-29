@@ -12,7 +12,7 @@ const FacilitiesDetail: React.FC<FacilitiesDetailProps> = ({
 }) => {
   return (
     <article className="px-12 py-8">
-      <div>{facility.FacilityName}</div>
+      <div>{facility.name}</div>
       <div>
         {availabilities.map((date, key) => (
           <span key={key}>{date}</span>

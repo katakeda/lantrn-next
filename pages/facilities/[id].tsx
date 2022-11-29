@@ -14,24 +14,13 @@ interface FacilitiesDetailProps {
 
 export const getServerSideProps: GetServerSideProps<
   FacilitiesDetailProps
-> = async ({ query }) => {
+> = async ({ query, res }) => {
   const { id } = query;
 
   let facility: Facility;
   {
-    const options = {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        apikey: process.env.FACILITY_API_KEY,
-      },
-    };
     const response = await fetch(
-      buildUrl(`${process.env.FACILITY_API_HOST}/api/v1/facilities/${id}`, {
-        full: true,
-      }),
-      // @ts-ignore
-      options
+      buildUrl(`${process.env.BACKEND_API_ENDPOINT}/facilities/${id}`)
     );
     if (response.status >= 300) {
       return { props: { error: 'fetch error' } };
@@ -43,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<
   {
     const response = await fetch(
       buildUrl(
-        `${process.env.AVAILABILITY_API_HOST}/api/camps/availability/campground/${id}/month`,
+        `${process.env.AVAILABILITY_API_HOST}/api/camps/availability/campground/${facility.facilityId}/month`,
         {
           start_date: '2022-11-01T00:00:00.000Z',
         }
