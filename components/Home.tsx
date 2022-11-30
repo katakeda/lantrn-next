@@ -45,7 +45,7 @@ const Home: React.FC = () => {
   return (
     <article className="px-12 py-8 xl:px-64">
       <section className="relative h-48">
-        <Image src={'/img/hiking.svg'} alt={'banner'} fill />
+        <Image src={'/img/hiking.svg'} alt={'banner'} fill priority />
       </section>
       <section className="mt-8 flex flex-col items-center">
         <div className="text-3xl text-gray-900">Welcome to L∆NTRN</div>

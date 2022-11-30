@@ -5,4 +5,5 @@ export interface Facility {
   latitude: number;
   longitude: number;
   facilityId: string;
+  primaryImg: string;
 }
