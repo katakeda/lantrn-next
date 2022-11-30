@@ -18,6 +18,7 @@ export const getServerSideProps: GetServerSideProps<FacilitiesProps> = async ({
     buildUrl(`${process.env.BACKEND_API_ENDPOINT}/facilities`, {
       lat: query.lat ?? '',
       lng: query.lng ?? '',
+      sort: query.sort ?? '',
     })
   );
   if (response.status >= 300) {
