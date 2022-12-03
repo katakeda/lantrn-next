@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ['localhost', 'cdn.recreation.gov'],
   },
+  output: 'standalone',
 };
 
 module.exports = nextConfig;
