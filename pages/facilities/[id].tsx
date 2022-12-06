@@ -30,11 +30,12 @@ export const getServerSideProps: GetServerSideProps<
 
   let availabilities = new Set<string>();
   {
+    const [year, month] = new Date().toISOString().split('T')[0].split('-');
     const response = await fetch(
       buildUrl(
         `${process.env.AVAILABILITY_API_HOST}/api/camps/availability/campground/${facility.facilityId}/month`,
         {
-          start_date: '2022-11-01T00:00:00.000Z',
+          start_date: `${year}-${month}-01T00:00:00.000Z`,
         }
       )
     );

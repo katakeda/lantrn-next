@@ -57,7 +57,7 @@ const Home: React.FC = () => {
         </div>
       </section>
       <section className="mt-8">
-        <div className="flex flex-col space-y-1 rounded-md bg-white p-4 shadow-lg md:flex-row md:space-x-1 md:space-y-0">
+        <div className="flex flex-col space-y-1 bg-white p-4 shadow-lg md:flex-row md:space-x-1 md:space-y-0">
           {isLoaded && (
             <Autocomplete
               className="flex-1"
