@@ -91,6 +91,13 @@ const FacilitiesDetail: React.FC<FacilitiesDetailProps> = ({
     }
   };
 
+  const handleDaySelect = () => {
+    window.open(
+      `${process.env.NEXT_PUBLIC_RESERVATION_URL}/${facility.facilityId}`,
+      '_blank'
+    );
+  };
+
   return (
     <article className="px-12 py-8 xl:px-64">
       {fetchError && (
@@ -111,6 +118,7 @@ const FacilitiesDetail: React.FC<FacilitiesDetailProps> = ({
             tileDisabled={hanleTileDisabled}
             tileClassName={handleTileClassName}
             onActiveStartDateChange={handleActiveDateChange}
+            onClickDay={handleDaySelect}
             next2Label={null}
             prev2Label={null}
           />
