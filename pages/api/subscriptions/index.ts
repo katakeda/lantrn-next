@@ -58,9 +58,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     body: JSON.stringify({
       From: 'info@theboardhop.com',
       To: req.body.email,
-      Subject: 'Confirmation',
-      TextBody: `Welcome to Lantrn! Please confirm your account: ${token}`,
-      HtmlBody: `<h1>Welcome to Lantrn!</h1><p>Please confirm your account: ${token}</p>`,
+      Subject: 'Confirm your email address',
+      TextBody: `Welcome to Lantrn! Please confirm your email address: ${token}`,
+      HtmlBody: `<h1>Welcome to Lantrn!</h1><p>Please confirm your email address: ${token}</p>`,
       MessageStream: 'outbound',
     }),
   };
