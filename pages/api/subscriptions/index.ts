@@ -56,8 +56,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       'X-Postmark-Server-Token': process.env.POSTMARK_API_TOKEN,
     },
     body: JSON.stringify({
-      From: '',
-      To: '',
+      From: 'info@theboardhop.com',
+      To: req.body.email,
       Subject: 'Confirmation',
       TextBody: `Welcome to Lantrn! Please confirm your account: ${token}`,
       HtmlBody: `<h1>Welcome to Lantrn!</h1><p>Please confirm your account: ${token}</p>`,
