@@ -81,6 +81,7 @@ const FacilitiesDetail: React.FC<FacilitiesDetailProps> = ({
           email: subscribedEmail,
           targetDate: `${year}-${month}-01`,
           facilityId: parseInt(facility.id),
+          status: 'pending',
         }),
       };
       const response = await fetch('/api/subscriptions', options);
