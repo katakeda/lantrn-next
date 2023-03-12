@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { buildUrl } from '../../../utils/common';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // Create subscription and retrieve subscriptionId
@@ -12,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       body: JSON.stringify(req.body),
     };
     const response = await fetch(
-      `${process.env.BACKEND_API_ENDPOINT}/subscriptions`,
+      buildUrl(`${process.env.BACKEND_API_ENDPOINT}/subscriptions`),
       options
     );
 
@@ -35,7 +36,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       body: JSON.stringify({ subscriptionId }),
     };
     const response = await fetch(
-      `${process.env.BACKEND_API_ENDPOINT}/subscription_tokens`,
+      buildUrl(`${process.env.BACKEND_API_ENDPOINT}/subscription_tokens`),
       options
     );
 
@@ -64,8 +65,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       MessageStream: 'outbound',
     }),
   };
-  // @ts-ignore
-  const response = await fetch(`${process.env.POSTMARK_API_ENDPOINT}`, options);
+  const response = await fetch(
+    buildUrl(`${process.env.POSTMARK_API_ENDPOINT}`),
+    // @ts-ignore
+    options
+  );
 
   if (response.status >= 300) {
     return res.status(response.status).json('fetch error');

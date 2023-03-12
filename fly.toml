@@ -8,6 +8,7 @@ processes = []
 [env]
   BACKEND_API_ENDPOINT = "https://lantrn-api-go.fly.dev"
   AVAILABILITY_API_HOST = "https://www.recreation.gov"
+  POSTMARK_API_ENDPOINT = "https://api.postmarkapp.com/email"
 
 [experimental]
   allowed_public_ports = []

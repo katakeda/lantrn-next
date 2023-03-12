@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import Error from '../../components/Error';
 import Layout from '../../components/Layout';
+import { buildUrl } from '../../utils/common';
 
 interface SubscriptionConfirmationProps {
   error?: string | null;
@@ -15,7 +16,9 @@ export const getServerSideProps: GetServerSideProps<
     return { props: { error: 'missing token' } };
   }
   const response = await fetch(
-    `${process.env.BACKEND_API_ENDPOINT}/subscription_tokens?token=${token}`
+    buildUrl(
+      `${process.env.BACKEND_API_ENDPOINT}/subscription_tokens?token=${token}`
+    )
   );
 
   if (response.status >= 300) {
@@ -34,7 +37,9 @@ export const getServerSideProps: GetServerSideProps<
     };
     // @ts-ignore
     const response = await fetch(
-      `${process.env.BACKEND_API_ENDPOINT}/subscriptions/${subscriptionId}`,
+      buildUrl(
+        `${process.env.BACKEND_API_ENDPOINT}/subscriptions/${subscriptionId}`
+      ),
       options
     );
 
